@@ -1,4 +1,5 @@
 function singlePlay() {
+    
     let asd = ["Filler", "Rock", "Paper", "Scissors"];
     let PlayerChoice = window.prompt("Enter your choice: ");
     PlayerChoice = PlayerChoice.toLowerCase()
@@ -23,6 +24,9 @@ function singlePlay() {
     else { return ["Wrong input", Playerchoice] }
 }
 
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+}
 
 function computerPlays() {
     let choices = ["Rock", "Paper", "Scissors"];
@@ -56,6 +60,3 @@ function Game() {
     }
 }
 
-    function getRandomInt(max) {
-        return Math.floor(Math.random() * max);
-    }

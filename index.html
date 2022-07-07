@@ -1,10 +1,35 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="UTF-8">
   <title>Page Title</title>
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-<script src="gamerock.js"></script>
+  <div class="top">
+
+    <div class="score" id="user-score">
+      <div id="user-title">USER</div>
+      <div id="user-points">0</div>
+    </div>
+    <div class="score" id="cpu-score">
+      <div id="pc-title">CPU</div>
+      <div id="pc-points">0</div>
+    </div>
+
+  </div>
+  <div class="center">
+    <button id="reset">Reset</button>
+    <div class="options">
+      <button data-key="82" class="choice , key" id="rock"> ROCK </button>
+      <button data-key="80" class="choice , key" id="paper"> PAPER </button>
+      <button data-key="83" class="choice , key" id="scissors"> SCISSORS </button>
+    </div>
+  </div>
+  <div class="footer"> . . . Y U H U Y U . . .</div>
+  <script src="gamerockgui.js"></script>
 </body>
+
 </html>
