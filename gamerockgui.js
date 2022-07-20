@@ -1,7 +1,12 @@
 let player = 0;
 let machine = 0;
+let turn = 0;
 const user = document.getElementById('user-points');
 const pc = document.getElementById('pc-points');
+const winner = document.getElementById('winner');
+
+winner.textContent = "Click an option to start";
+
 
 function singlePlay(PlayerChoice) {
     
@@ -48,22 +53,39 @@ function computerPlays() {
 
 const btn = document.querySelectorAll('.choice'); // make a nodelist including all the elements that has choice class
 const reset = document.getElementById('reset')
+
 reset.addEventListener('click',function(e) {
     player = 0
     machine = 0
     user.textContent = player;
     pc.textContent = machine;
+    reset.classList.remove('resetvisible');
+    winner.textContent = "Click an option to start";
+    btn.forEach((bt) => {bt.disabled = false;})
 })
+
 btn.forEach((bt) => {   // for every element in the btn nodelist do the following, in this case add and event listener .
     bt.addEventListener('click', function (e) {
         //e.target.style.background = 'blue';
         bt.classList.add('choiced');
-        console.log(singlePlay(bt.id));
+        turna = singlePlay(bt.id);
         user.textContent = player;
         pc.textContent = machine;
+        turn += 1;
+        winner.textContent = "Turn " + turn +": you choose " +turna[1]+ " machine choose "+turna[2];
+        if(player == 5 || machine == 5) {
+            reset.classList.add('resetvisible');
+            btn.forEach((bt) => {bt.disabled = true;})
+
+            if(player == 5) {
+                winner.textContent = "You won!";
+                }
+            else {
+                winner.textContent = "You lost!";
+                }
         console.log(player);
-       
-});
+        
+}});
 })
 
 function removeTransition(e) {
@@ -76,4 +98,4 @@ const keys = document.querySelectorAll('.key');
 console.log(keys)
 keys.forEach(key => key.addEventListener('transitionend', removeTransition));
 
-//TODO fix end transition back to original state
+//TODO add message of cpu and player choice and if user loose/win, set time between rounds.

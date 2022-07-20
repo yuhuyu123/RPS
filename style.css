@@ -32,6 +32,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-around;
+    
 
 
     max-height: 100%;
@@ -77,13 +78,18 @@ body {
     
 }
 
-#reset {
+.reseti {
     height: 5vh;
     width: 7vh;
     background-color: orange;
     font-size: 2vh;
     border-color: orange;
     border-radius: 2%;
+    visibility: hidden;
+}
+
+.resetvisible {
+    visibility: visible;
 }
 
 .choiced {
@@ -91,5 +97,11 @@ body {
     box-shadow: 0 0 2rem orange;
     color: coral;
     transition-duration: 1s;  
+}
+
+#winner{
+    font-size: 5vh;
+    color: orange;
+    font-weight: bold;
 }
 
