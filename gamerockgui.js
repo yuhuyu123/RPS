@@ -1,11 +1,24 @@
 let player = 0;
 let machine = 0;
 let turn = 0;
+
 const user = document.getElementById('user-points');
 const pc = document.getElementById('pc-points');
 const winner = document.getElementById('winner');
+const btn = document.querySelectorAll('.choice'); // make a nodelist including all the elements that has choice class
+const reset = document.getElementById('reset')
 
 winner.textContent = "Click an option to start";
+
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+}
+
+function computerPlays() {
+    let choices = ["Rock", "Paper", "Scissors"];
+    choice = choices[getRandomInt(3)]
+    return choice
+}
 
 
 function singlePlay(PlayerChoice) {
@@ -41,19 +54,6 @@ function singlePlay(PlayerChoice) {
     else { return ["Wrong input", Playerchoice] }
 }
 
-function getRandomInt(max) {
-    return Math.floor(Math.random() * max);
-}
-
-function computerPlays() {
-    let choices = ["Rock", "Paper", "Scissors"];
-    choice = choices[getRandomInt(3)]
-    return choice
-}
-
-const btn = document.querySelectorAll('.choice'); // make a nodelist including all the elements that has choice class
-const reset = document.getElementById('reset')
-
 reset.addEventListener('click',function(e) {
     player = 0
     machine = 0
@@ -62,12 +62,14 @@ reset.addEventListener('click',function(e) {
     reset.classList.remove('resetvisible');
     winner.textContent = "Click an option to start";
     btn.forEach((bt) => {bt.disabled = false;})
+    turn = 0;
 })
 
 btn.forEach((bt) => {   // for every element in the btn nodelist do the following, in this case add and event listener .
     bt.addEventListener('click', function (e) {
         //e.target.style.background = 'blue';
         bt.classList.add('choiced');
+        btn.forEach((bt) => {bt.disabled = true;})
         turna = singlePlay(bt.id);
         user.textContent = player;
         pc.textContent = machine;
@@ -91,11 +93,12 @@ btn.forEach((bt) => {   // for every element in the btn nodelist do the followin
 function removeTransition(e) {
     if(e.propertyName !== 'transform') return; //skip it if its not a transform
     this.classList.remove('choiced');
-    
+    if(player < 5 && machine < 5) {
+        btn.forEach((bt) => {bt.disabled = false;})
+    }
+     
 }
 
 const keys = document.querySelectorAll('.key');
 console.log(keys)
 keys.forEach(key => key.addEventListener('transitionend', removeTransition));
-
-//TODO add message of cpu and player choice and if user loose/win, set time between rounds.
